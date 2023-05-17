@@ -1,0 +1,8 @@
+.card {
+	position: relative;
+	background-color: var(--color-primary);
+	border-radius: 5px;
+	.cardBody {
+		padding: 1rem;
+	}
+}

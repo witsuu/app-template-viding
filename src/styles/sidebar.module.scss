@@ -1,0 +1,28 @@
+.sidebar {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	margin-top: 2rem;
+	padding: 1rem;
+	.menu {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		list-style: none;
+		.menuList {
+			position: relative;
+			display: block;
+			.menuItem {
+				padding: 0.5rem 1rem;
+				border-radius: 5px;
+				&:hover {
+					background: rgba($color: #000000, $alpha: 0.1);
+				}
+				&.active {
+					background-color: var(--color-secondary);
+					color: var(--color-button-text);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+.loading {
+	top: 0;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba($color: #000000, $alpha: 0.15);
+	.loadingBody {
+		padding: 0.25rem 0.25rem 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 50px;
+		transform: translate(-50%, -50%);
+		border-radius: 5px;
+		background: rgba($color: #000000, $alpha: 0.2);
+		.loadingImage {
+			width: 100%;
+			height: auto;
+		}
+	}
+}
