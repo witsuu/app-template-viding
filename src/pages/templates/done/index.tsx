@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query"
 import Card from "@/components/card"
 import Head from "next/head"
 import { getDataThemes } from "@/lib/getDataThemes"
-import { env } from "process"
 
 export async function getStaticProps() {
     const data = await getDataThemes()
