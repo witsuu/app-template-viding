@@ -10,14 +10,14 @@ import { useEffect, useState } from "react";
 export const Sidebar = () => {
     const pathname = usePathname()
 
-    const [navActive, setNavActive] = useState("/templates/new")
+    const [navActive, setNavActive] = useState("/templates/new/")
 
     useEffect(() => {
         setNavActive(pathname)
     }, [pathname])
 
-    const isActiveNav = (title: string) => {
-        if (navActive == "/templates/" + title) {
+    const isActiveNav = (status: string) => {
+        if (navActive == `/templates/${status}/`) {
             return true
         } else {
             return false

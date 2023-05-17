@@ -4,10 +4,11 @@ import Link from "next/link"
 import { useQuery } from "@tanstack/react-query"
 import Card from "@/components/card"
 import Head from "next/head"
-import { getDataThemes } from "@/lib/getDataThemes"
+import { getDataThemesClient } from "@/lib/getDataThemes"
+import { githubUrl } from "@/@core/utilities/githubUrl"
 
 export async function getStaticProps() {
-    const data = await getDataThemes()
+    const data = await getDataThemesClient()
 
     return {
         props: {
@@ -19,7 +20,7 @@ export async function getStaticProps() {
 const Done = (props: any) => {
     const { data } = useQuery({
         queryKey: ["theme"],
-        queryFn: getDataThemes,
+        queryFn: getDataThemesClient,
         initialData: props.data
     })
 
@@ -37,7 +38,7 @@ const Done = (props: any) => {
             <div className="container">
                 <div className="row">
                     {data?.map((item: any) => (
-                        item.status === "DONE" ? <Link href={`${process.env.GITHUB_URL}${item.path}`} target="_blank" rel="noopener noreferrer" key={item.name}>
+                        item.status === "DONE" ? <Link href={`${githubUrl}${item.path}`} target="_blank" rel="noopener noreferrer" key={item.name}>
                             <Card title={item.name} />
                         </Link> : ""
                     ))}
