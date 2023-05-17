@@ -47,7 +47,7 @@ const CustomError = () => {
     return (
         <ErrorWrapper>
             <ErrorBody>
-                <ErrorText className={font.className}>404 - Page Not Found</ErrorText>
+                <ErrorText className={font.className}>500 - Server Error</ErrorText>
                 <ButtonBack onClick={() => router.replace('/')}>Back To Home Page</ButtonBack>
             </ErrorBody>
         </ErrorWrapper>
