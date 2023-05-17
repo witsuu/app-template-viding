@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 import Card from "@/components/card"
 import Head from "next/head"
 import { getDataThemes } from "@/lib/getDataThemes"
+import { env } from "process"
 
 export async function getStaticProps() {
     const data = await getDataThemes()
@@ -37,7 +38,7 @@ const Done = (props: any) => {
             <div className="container">
                 <div className="row">
                     {data?.map((item: any) => (
-                        item.status === "DONE" ? <Link href={`/${item.path}`} target="_blank" rel="noopener noreferrer" key={item.name}>
+                        item.status === "DONE" ? <Link href={`${process.env.GITHUB_URL}${item.path}`} target="_blank" rel="noopener noreferrer" key={item.name}>
                             <Card title={item.name} />
                         </Link> : ""
                     ))}
