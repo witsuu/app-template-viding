@@ -1,4 +1,4 @@
 export const getDataThemes = async () => {
-    const res = await fetch(`https://witsuu.github.io/new-theme-viding/data.json`)
+    const res = await fetch(`https://app-template-viding.vercel.app/api/themes/`)
     return res.json()
 }
