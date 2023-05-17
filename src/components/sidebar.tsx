@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export const Sidebar = () => {
     const pathname = usePathname()
 
-    const [navActive, setNavActive] = useState("/themes/new")
+    const [navActive, setNavActive] = useState("/templates/new")
 
     useEffect(() => {
         setNavActive(pathname)
