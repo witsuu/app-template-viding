@@ -1,0 +1,1 @@
+export const githubUrl = "https://witsuu.github.io/new-theme-viding/"
