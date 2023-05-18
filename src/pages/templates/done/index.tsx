@@ -1,14 +1,14 @@
 "use client"
 
 import Link from "next/link"
-import { useQuery } from "@tanstack/react-query"
 import Card from "@/components/card"
 import Head from "next/head"
-import { getDataThemesClient } from "@/lib/getDataThemes"
+import { getDataThemesServer } from "@/lib/getDataThemes"
 import { githubUrl } from "@/@core/utilities/githubUrl"
+import { GlobalHead } from "@/components/head"
 
-export async function getStaticProps() {
-    const data = await getDataThemesClient()
+export async function getServerSideProps() {
+    const data = await getDataThemesServer()
 
     return {
         props: {
@@ -17,23 +17,13 @@ export async function getStaticProps() {
     }
 }
 
-const Done = (props: any) => {
-    const { data } = useQuery({
-        queryKey: ["theme"],
-        queryFn: getDataThemesClient,
-        initialData: props.data
-    })
+const Done = ({ data }: any) => {
 
     return (
         <>
             <Head>
                 <title>Finished Templates</title>
-                <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
-                <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" />
-                <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-                <link rel="manifest" href="/manifest.json" />
+                <GlobalHead />
             </Head>
             <div className="container">
                 <div className="row">
