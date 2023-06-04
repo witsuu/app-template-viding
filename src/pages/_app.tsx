@@ -9,6 +9,7 @@ import { Mulish } from 'next/font/google'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Loading from '@/components/loading'
+import { ModalContextProvider } from '@/contexts/modal.context'
 
 const mulish = Mulish({ subsets: ['latin'] })
 
@@ -33,15 +34,17 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router])
 
   return (
-    <Providers>
-      <main className={mulish.className}>
-        <Navbar />
-        <Sidebar />
-        <Component {...pageProps} />
-        {
-          loading ? <Loading /> : ""
-        }
-      </main>
+    <Providers >
+      <ModalContextProvider>
+        <main className={mulish.className}>
+          <Navbar />
+          <Sidebar />
+          <Component {...pageProps} />
+          {
+            loading ? <Loading /> : ""
+          }
+        </main>
+      </ModalContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </Providers>
   )

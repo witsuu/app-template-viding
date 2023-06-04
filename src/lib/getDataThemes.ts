@@ -12,3 +12,19 @@ export const getDataThemesServer = async () => {
     // return data themes
     return JSON.parse(JSON.stringify(themes))
 }
+
+type IstatusThemes = {
+    statusThemes: string
+}
+
+export const getDataThemesByStatus = async ({ statusThemes }: IstatusThemes) => {
+    // get data themes from database
+    const themes = await prisma.themes.findMany({
+        where: {
+            status: statusThemes
+        }
+    })
+
+    // return data themes
+    return JSON.parse(JSON.stringify(themes))
+}
