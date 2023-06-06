@@ -32,7 +32,7 @@ const Draft = ({ data }: any) => {
                 amount: 1
             }
         })
-    }, [])
+    }, [listRef, gsap, data])
 
     return (
         <>
@@ -43,9 +43,9 @@ const Draft = ({ data }: any) => {
             <div className="container">
                 <div className="row">
                     {data?.map((item: any, i: any) => (
-                        <Link href={`${githubUrl}${item.path}`} target="_blank" rel="noopener noreferrer" key={item.name} ref={(el) => (listRef.current[i] = el)}>
-                            <Card title={item.name} />
-                        </Link>
+                        <div ref={(el: HTMLDivElement) => (listRef.current[i] = el)} key={item.name}>
+                            <Card title={item.name} path={item.path} />
+                        </div>
                     ))}
                 </div>
             </div>

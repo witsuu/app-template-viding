@@ -2,7 +2,7 @@ import { getDataThemesByStatus } from "@/lib/getDataThemes"
 import Card from "@/components/card"
 import Head from "next/head"
 import Link from "next/link"
-import { Suspense, useEffect, useRef } from "react"
+import { RefObject, Suspense, useEffect, useRef } from "react"
 import { githubUrl } from "@/@core/utilities/githubUrl"
 import { GlobalHead } from "@/components/head"
 import { gsap } from "gsap"
@@ -30,7 +30,7 @@ const New = ({ data }: any) => {
                 amount: 0.5
             }
         })
-    }, [listRef])
+    }, [listRef, gsap, data])
 
     return (
         <>
@@ -42,9 +42,9 @@ const New = ({ data }: any) => {
                 <div className="container">
                     <div className="row">
                         {data?.map((item: any, i: any) => (
-                            <Link href={`${githubUrl}${item.path}`} target="_blank" rel="noopener noreferrer" key={item.name} ref={(el) => (listRef.current[i] = el)}>
-                                <Card title={item.name} />
-                            </Link>
+                            <div ref={(el: HTMLDivElement) => (listRef.current[i] = el)} key={item.name}>
+                                <Card title={item.name} path={item.path} />
+                            </div>
                         ))}
                     </div>
                 </div>

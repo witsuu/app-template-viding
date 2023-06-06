@@ -1,8 +1,8 @@
 import { Mulish } from 'next/font/google'
 import { ModalContext } from "@/contexts/modal.context";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
-import { IModal } from "../@types/modal"
+import { IModal, IModalProps } from "../@types/modal"
 import { createPortal } from "react-dom";
 
 const mulish = Mulish({ subsets: ['latin'] })
@@ -24,7 +24,8 @@ const ModalMain = styled.div({
     background: 'var(--color-body)',
     minWidth: 280,
     minHeight: 240,
-    borderRadius: 8
+    borderRadius: 8,
+    animation: "modalFade 500ms ease"
 })
 
 const ModalHeader = styled.div`
@@ -56,8 +57,8 @@ const ModalBody = styled.div({
     position: 'relative'
 })
 
-const Modal = ({ title, children, closable = true }: any) => {
-    const { openModal, modalRefOverlay, modalRefButton, onCloseModal } = useContext(ModalContext) as IModal
+const Modal = ({ title, children, closable = true }: IModalProps) => {
+    const { modalRefOverlay, modalRefButton, onCloseModal } = useContext(ModalContext) as IModal
 
     return createPortal(
         <ModalOverlay ref={modalRefOverlay} onClick={closable ? onCloseModal : () => { return }} className={mulish.className}>

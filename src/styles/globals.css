@@ -23,6 +23,14 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: none;
+}
+
+button:focus {
+  outline: none;
+}
+
 .container {
   width: 100%;
   padding-top: 2rem;
@@ -55,4 +63,11 @@ a {
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+@keyframes modalFade {
+  from {
+    transform: translate(0, -30px);
+    opacity: 0;
+  }
 }

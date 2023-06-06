@@ -1,21 +1,29 @@
 import { Navbar as styles } from "@/styles"
 import { Abril_Fatface } from "next/font/google"
 import { ButtonLink } from "./button"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { ModalContext } from "@/contexts/modal.context"
 import { IModal } from "@/@types/modal"
 import Modal from "./modal"
+import SignInForm from "./signInForm"
 
 const abril = Abril_Fatface({ subsets: ['latin'], weight: "400" })
 
 const Navbar = () => {
-    const { setOpenModal, openModal } = useContext(ModalContext) as IModal
+    const { onOpenModal, registerModals } = useContext(ModalContext) as IModal
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
 
-        setOpenModal(true)
+        onOpenModal("signIn")
     }
+
+    useEffect(() => {
+        registerModals("signIn",
+            <Modal closable={false} title="Sign In">
+                <SignInForm />
+            </Modal>)
+    }, [registerModals, Modal, SignInForm])
 
     return (
         <nav className={styles.navbar}>
@@ -30,11 +38,6 @@ const Navbar = () => {
                     </ButtonLink>
                 </div>
             </div>
-            {openModal && (
-                <Modal closable={false} title="Sign In">
-                    <span>This is Modal!</span>
-                </Modal>
-            )}
         </nav>
     )
 }
