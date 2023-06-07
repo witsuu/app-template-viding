@@ -2,7 +2,7 @@
 
 import { Sidebar as styles } from "@/styles"
 import { sidebarData } from "@/data/sidebars"
-import className from "@/@core/utilities/multiClass";
+import className from "@/utils/multiClass";
 import Link from "next/link";
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react";

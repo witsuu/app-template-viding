@@ -1,11 +1,12 @@
 import { Navbar as styles } from "@/styles"
 import { Abril_Fatface } from "next/font/google"
-import { ButtonLink } from "./button"
+import { Button, ButtonLink } from "./button"
 import { useContext, useEffect } from "react"
 import { ModalContext } from "@/contexts/modal.context"
 import { IModal } from "@/@types/modal"
 import Modal from "./modal"
 import SignInForm from "./signInForm"
+import { toast } from "@/@core/toast"
 
 const abril = Abril_Fatface({ subsets: ['latin'], weight: "400" })
 

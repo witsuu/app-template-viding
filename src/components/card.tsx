@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { BiEdit } from 'react-icons/bi'
-import { githubUrl } from "@/@core/utilities/githubUrl"
+import { githubUrl } from "@/utils/githubUrl"
 import Link from "next/link"
-import { useContext, useEffect, useMemo } from "react"
+import { useContext, useEffect } from "react"
 import { IModal } from "@/@types/modal"
 import { ModalContext } from "@/contexts/modal.context"
 import Modal from "./modal"

@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Loading from '@/components/loading'
 import { ModalContextProvider } from '@/contexts/modal.context'
+import { ToastContainer } from '@/components/toast'
 
 const mulish = Mulish({ subsets: ['latin'] })
 
@@ -45,6 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         </main>
       </ModalContextProvider>
+      <ToastContainer />
       <ReactQueryDevtools initialIsOpen={false} />
     </Providers>
   )

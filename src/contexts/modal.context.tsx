@@ -19,7 +19,6 @@ export const ModalContextProvider = ({ children }: IModalChildren) => {
 
     const onOpenModal = (modalName: string) => {
         setModalName(modalName)
-        console.log(modals)
     }
 
     const onCloseModal = (e: any) => {
