@@ -32,7 +32,7 @@ const Done = ({ data }: any) => {
                 amount: 3
             }
         })
-    }, [listRef, gsap, data])
+    }, [listRef, data])
 
     return (
         <>

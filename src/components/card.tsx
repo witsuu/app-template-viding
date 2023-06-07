@@ -47,10 +47,10 @@ const Card = ({ title, path, ...rest }: ICard) => {
 
     useEffect(() => {
         registerModals(title,
-            <Modal closable={true}>
+            <Modal>
                 <span>This is Modal {title}!</span>
             </Modal>)
-    }, [registerModals, title, Modal])
+    }, [registerModals, title])
 
     return (
         <CardMain {...rest}>

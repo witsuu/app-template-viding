@@ -30,7 +30,7 @@ const New = ({ data }: any) => {
                 amount: 0.5
             }
         })
-    }, [listRef, gsap, data])
+    }, [listRef, data])
 
     return (
         <>

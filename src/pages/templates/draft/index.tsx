@@ -32,7 +32,7 @@ const Draft = ({ data }: any) => {
                 amount: 1
             }
         })
-    }, [listRef, gsap, data])
+    }, [listRef, data])
 
     return (
         <>

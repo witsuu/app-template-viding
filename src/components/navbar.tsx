@@ -23,7 +23,7 @@ const Navbar = () => {
             <Modal closable={false} title="Sign In">
                 <SignInForm />
             </Modal>)
-    }, [registerModals, Modal, SignInForm])
+    }, [registerModals])
 
     return (
         <nav className={styles.navbar}>

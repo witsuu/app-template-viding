@@ -17,7 +17,7 @@ export type IModals = {
 }
 
 export type IModalProps = {
-    title: string,
+    title?: string,
     children: ReactElement,
-    closable: Boolean
+    closable?: Boolean
 }
