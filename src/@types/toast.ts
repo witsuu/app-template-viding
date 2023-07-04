@@ -20,12 +20,14 @@ export interface IToastProps {
     type?: TypeOptions,
     message: string,
     closeToast: () => void,
-    cb: () => void,
-    status: string
+    status: string,
+    isToastActive?: () => void,
+    position: number,
+    setStatusToast: (s: string, id: Id) => void
 }
 
 export interface ToastContainerProps {
-    type: TypeOptions
+    type?: TypeOptions,
     limit?: number
 }
 

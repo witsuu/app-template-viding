@@ -71,3 +71,8 @@ button:focus {
     opacity: 0;
   }
 }
+
+.loadingToast {
+  transition: all 5s linear;
+  transform: scaleX(0) !important;
+}

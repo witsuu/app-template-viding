@@ -27,7 +27,7 @@ const Done = ({ data }: any) => {
                 autoAlpha: 0,
                 ease: "ease.inOut",
                 stagger: {
-                    amount: 0.5
+                    amount: data.length < 5 ? 0.5 : data.length > 10 ? 2 : 1
                 }
             })
         }, containerRef)

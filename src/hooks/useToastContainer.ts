@@ -1,6 +1,6 @@
 import { Event, eventManager } from "@/@core/eventManager";
 import { ClearWaitingQueueParams, IToastProps, Id, Toast, ToastContainerProps, ToastContent } from "@/@types/toast";
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useReducer, useRef, useState } from "react"
 
 interface QueuedToast {
     toastContent: ToastContent;
@@ -21,10 +21,11 @@ export interface ContainerInstance {
 
 export const useToastContainer = (props: any) => {
     const [toastIds, setToastIds] = useState<Id[]>([]);
-    let status = "OPEN" || "IDLE" || "CLOSED"
+    let status = "OPEN" || "LOADING" || "CLOSED"
     const toastToRender = useRef(new Map()).current
     const containerRef = useRef(null)
-    const isToastActive = (id: Id) => toastIds.indexOf(id) !== -1
+    const isToastActive = (id: Id) => toastIds.indexOf(id) !== toastIds.length - 1
+    const [, forceUpdate] = useReducer(x => x + 1, 0)
 
     const instance = useRef<ContainerInstance>({
         toastKey: 1,
@@ -68,8 +69,12 @@ export const useToastContainer = (props: any) => {
         const closeToast = () => {
             removeToast(id)
         }
+        const setStatusToast = (s: string, id: Id) => {
+            const temp = toastToRender.get(id)
+            temp.status = s
+        }
         const toast = {
-            message, type, position: id, closeToast, status, callback: cb
+            message, type, position: id, closeToast, status, setStatusToast
         }
         toastToRender.clear()
 
@@ -79,7 +84,7 @@ export const useToastContainer = (props: any) => {
 
         toastToRender.set(id, toast)
 
-        setToastIds([id])
+        setToastIds(prev => [...prev, id])
     }
 
     function getToastToRender<T>(cb: (toastList: any[]) => T) {
@@ -96,6 +101,6 @@ export const useToastContainer = (props: any) => {
     }
 
     return {
-        getToastToRender, containerRef
+        getToastToRender, containerRef, isToastActive
     }
 }

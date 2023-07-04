@@ -7,6 +7,7 @@ import { Nunito_Sans } from "next/font/google"
 import { useEffect, forwardRef, useState, useRef } from 'react'
 import { useToastContainer } from "@/hooks/useToastContainer"
 import { gsap } from "gsap"
+import { ProgressToast } from "./progressToast"
 
 const nunito_sans = Nunito_Sans({ subsets: ['latin'] })
 
@@ -41,11 +42,9 @@ const ToastContent = styled.div<{ type: string }>`
     border-left: 5px solid var(--toast-border-color);
     border-radius:5px;
     display:flex;
-    // transition:all 1s ease;
-    // animation: ${fadeUp} 1s ease;
-    margin-bottom:1rem;
-    transform:translate(50%,0);
+    transform: translate(50%,0);
     opacity:0;
+    margin-bottom:1rem;
 `
 const ToastLogo = styled.div`
     position:relative;
@@ -78,63 +77,48 @@ const ToastDescription = styled.div`
 `
 
 const ToastContents = (props: IToastProps) => {
-    const { type = "info" || "error" || "warning" || "success", message, closeToast, cb, status }: IToastProps = props
+    const { type = "info" || "error" || "warning" || "success", message, closeToast, status, setStatusToast, position }: IToastProps = props
     const toastContentRef = useRef<HTMLDivElement>(null)
-    const [statusToast, setStatusToast] = useState(status)
-
-    const animations = {
-        open: (element: HTMLDivElement, done: () => void) => {
-            gsap.to(element, 1.5, { x: 0, opacity: 1, onComplete: done })
-        },
-        closed: (element: HTMLDivElement, done: () => void) => {
-            gsap.from(element, 1.5, { x: 0, opacity: 1, onComplete: done })
-        }
-    }
-
-    function animate(element: HTMLDivElement | null, animation: any) {
-        return new Promise(resolve => animation(element, resolve))
-    }
+    const toastWrapContentRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        const playAnimation = async (element: HTMLDivElement | null) => {
-            if (statusToast === "OPEN") {
-                await animate(element, animations.open)
-            }
-            if (status === "CLOSE") {
-                await animate(element, animations.closed)
-            }
-        }
+        const ctx = gsap.context(() => {
+            if (status === "OPEN") gsap.to(toastContentRef.current, 1.5, { x: 0, opacity: 1 }), setStatusToast("LOADING", position)
+        }, toastWrapContentRef)
 
-        Promise.resolve(toastContentRef.current).then(playAnimation)
-    }, [statusToast])
+        return () => ctx.revert()
+    }, [])
 
     return (
-        <ToastContent type={type} ref={toastContentRef}>
-            <ToastLogo>
-                {type === "error" ? <MdOutlineError /> :
-                    type === "info" ? <HiInformationCircle /> :
-                        type === "warning" ? <IoIosWarning /> :
-                            type === "success" ? <HiCheckCircle /> :
-                                <HiInformationCircle />}
-            </ToastLogo>
-            <ToastBody>
-                <ToastHeader>
-                    <span>{type}</span>
-                    <div>
-                        <IoIosClose size={24} onClick={e => closeToast()} />
-                    </div>
-                </ToastHeader>
-                <ToastDescription>
-                    {message}
-                </ToastDescription>
-            </ToastBody>
-        </ToastContent>
+        <div ref={toastWrapContentRef}>
+            <ToastContent type={type} ref={toastContentRef}>
+                <ToastLogo>
+                    {type === "error" ? <MdOutlineError /> :
+                        type === "info" ? <HiInformationCircle /> :
+                            type === "warning" ? <IoIosWarning /> :
+                                type === "success" ? <HiCheckCircle /> :
+                                    <HiInformationCircle />}
+                </ToastLogo>
+                <ToastBody>
+                    <ToastHeader>
+                        <span>{type}</span>
+                        <div>
+                            <IoIosClose size={24} onClick={e => closeToast()} />
+                        </div>
+                    </ToastHeader>
+                    <ToastDescription>
+                        {message}
+                    </ToastDescription>
+                </ToastBody>
+                <ProgressToast />
+            </ToastContent>
+        </div>
     )
 }
 
 export const ToastContainer = forwardRef<HTMLDivElement, ToastContainerProps>((props, ref) => {
 
-    const { getToastToRender, containerRef } = useToastContainer(props)
+    const { getToastToRender, containerRef, isToastActive } = useToastContainer(props)
 
     useEffect(() => {
         if (ref) {
@@ -154,3 +138,5 @@ export const ToastContainer = forwardRef<HTMLDivElement, ToastContainerProps>((p
         </ToastContainers>
     )
 })
+
+ToastContainer.displayName = 'ToastContainer'
