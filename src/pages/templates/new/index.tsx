@@ -1,6 +1,5 @@
 import { getDataThemesByStatus } from "@/lib/getDataThemes"
 import Card from "@/components/card"
-import Head from "next/head"
 import { useEffect, useRef } from "react"
 import { GlobalHead } from "@/components/head"
 import { gsap } from "gsap"
@@ -37,10 +36,7 @@ const New = ({ data }: any) => {
 
     return (
         <>
-            <Head>
-                <title>New Templates</title>
-                <GlobalHead />
-            </Head>
+                <GlobalHead title="New Templates" description="List of new templates wedding invitation for viding.co"/>
             <div className="container" ref={containerRef}>
                 <div className="row">
                     {data?.map((item: any, i: any) => (

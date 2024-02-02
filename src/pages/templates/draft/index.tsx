@@ -1,5 +1,4 @@
 import Card from "@/components/card"
-import Head from "next/head"
 import { GlobalHead } from "@/components/head"
 import { getDataThemesByStatus } from "@/lib/getDataThemes"
 import { useEffect, useRef } from "react"
@@ -37,10 +36,7 @@ const Draft = ({ data }: any) => {
 
     return (
         <>
-            <Head>
-                <title>Draft Templates</title>
-                <GlobalHead />
-            </Head>
+                <GlobalHead title="Draft Templates" description="List of wedding invitation templates reserved for viding.co" />
             <div className="container" ref={containerRef}>
                 <div className="row">
                     {data?.map((item: any, i: any) => (

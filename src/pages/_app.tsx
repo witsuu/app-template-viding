@@ -11,8 +11,6 @@ import { useEffect, useState } from 'react'
 import Loading from '@/components/loading'
 import { ModalContextProvider } from '@/contexts/modal.context'
 import { ToastContainer } from '@/components/toast'
-import { toast } from '@/@core/toast'
-import { Button } from '@/components/button'
 
 const mulish = Mulish({ subsets: ['latin'] })
 
@@ -42,13 +40,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <main className={mulish.className}>
           <Navbar />
           <Sidebar />
-          <div className="w-full">
-            <div className="row">
-              <Button onClick={() => toast.info("Ini notifikasi")}>Show Notify info!</Button>
-              <Button onClick={() => toast.warning("Ini notifikasi")}>Show Notify Warning!</Button>
-              <Button onClick={() => toast.error("Ini notifikasi")}>Show Notify Error!</Button>
-            </div>
-          </div>
           <Component {...pageProps} />
           {
             loading ? <Loading /> : ""

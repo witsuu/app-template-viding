@@ -87,7 +87,7 @@ const ToastContents = (props: IToastProps) => {
         }, toastWrapContentRef)
 
         return () => ctx.revert()
-    }, [])
+    }, [position])
 
     return (
         <div ref={toastWrapContentRef}>
