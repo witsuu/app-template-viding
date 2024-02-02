@@ -8,14 +8,14 @@ type THead={
 export const GlobalHead = ({title,description}:THead) => {
     return (
         <Head>
-            <title>{title ?? "Template for Viding"}</title>
-            <meta name="description" content={description ?? "List templates wedding invitation for viding.co"} />
+            <title>{title ?? "List of Templates for Viding"}</title>
+            <meta name="description" content={description ?? "List of templates wedding invitation for viding.co"} />
 
             <meta property='og:title' content="Template For Viding" />
             <meta property='og:url' content="https://template.cakwit.my.id" />
             <meta property='og:type' content='website' />
-            <meta property='og:description' content={description ?? "List templates wedding invitation for viding.co"} />
-            <meta property='og:image' content="/android-icon-192x192.png" />
+            <meta property='og:description' content={description ?? "List of templates wedding invitation for viding.co"} />
+            <meta property='og:image' content="https://template.cakwit.my.id/android-icon-192x192.png" />
 
             <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
             <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" />
