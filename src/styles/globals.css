@@ -1,8 +1,10 @@
 :root {
-  --color-body: #2C3639;
-  --color-primary: #3F4E4F;
-  --color-secondary: #dddddd;
-  --color-text: #f0f0f0;
+  --color-body: #272d30;
+  --color-primary: #323d41;
+  --color-secondary: #3F4E4F;
+  --color-button: #dddddd;
+  --color-headline-text: #f0f0f0;
+  --color-text: #dad9d9;
   --color-button-text: #1f1e1f;
 }
 
@@ -60,9 +62,26 @@ button:focus {
 
 .row {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
+  row-gap: 1rem;
   flex-wrap: wrap;
+}
+
+.row.card-list>* {
+  width: 25%;
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+@media (max-width:992px) {
+  .row.card-list>* {
+    width: 33.33%;
+  }
+}
+
+@media (max-width:576px) {
+  .row.card-list>* {
+    width: 50%;
+  }
 }
 
 @keyframes modalFade {
@@ -75,4 +94,18 @@ button:focus {
 .loadingToast {
   transition: all 5s linear;
   transform: scaleX(0) !important;
+}
+
+@media (min-width:768px) {
+  .col-md-4 {
+    width: 33.33%;
+    padding: 0 .5rem;
+  }
+}
+
+@media (min-width:992px) {
+  .col-lg-3 {
+    width: 25%;
+    padding: 0 .5rem;
+  }
 }

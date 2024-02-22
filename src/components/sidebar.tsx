@@ -6,6 +6,7 @@ import className from "@/utils/multiClass";
 import Link from "next/link";
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react";
+import { Hamburger } from "./hamburger";
 
 export const Sidebar = () => {
     const pathname = usePathname()
@@ -26,6 +27,7 @@ export const Sidebar = () => {
 
     return (
         <aside className={styles.sidebar}>
+            <Hamburger />
             <ul className={styles.menu}>
                 {
                     sidebarData.map(data => (

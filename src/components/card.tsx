@@ -6,25 +6,38 @@ import { useContext, useEffect } from "react"
 import { IModal } from "@/@types/modal"
 import { ModalContext } from "@/contexts/modal.context"
 import Modal from "./modal"
+import noImage from "@/assets/images/no-image.png"
+import Image from "next/image"
 
 const CardMain = styled.div`
     position: relative;
-    background-color: var(--color-primary);
-    border-radius: 5px;
+    background-color: var(--color-secondary);
+    color: var(--color-headline-text);
+    border-radius: 8px;
+    width:100%;
 `
 
 const CardBody = styled.div`
     padding: 1rem;
 `
 
+const CardImg = styled(Image)`
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ration:6/4;
+    border-radius:5px;
+    margin-bottom:.5rem;
+`
+
 const EditCardButton = styled.button`
     display:none;
     position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(50%,-50%);
+    top: 1rem;
+    right: 1rem;
+    // transform: translate(50%,-50%);
     background: var(--color-text);
-    padding: 0.23rem 0.23rem 0;
+    padding: 0.3rem 0.3rem 0.1rem;
     border:none;
     border-radius:50px;
     cursor:pointer;
@@ -39,10 +52,13 @@ const EditCardButton = styled.button`
 
 type ICard = {
     title: string,
-    path: string
+    path: string,
+    imgSrc?: string,
+    withImg?: Boolean,
+    [x: string]: any
 }
 
-const Card = ({ title, path, ...rest }: ICard) => {
+const Card = ({ title, path, imgSrc, withImg = false, ...rest }: ICard) => {
     const { onOpenModal, registerModals } = useContext(ModalContext) as IModal
 
     useEffect(() => {
@@ -55,10 +71,13 @@ const Card = ({ title, path, ...rest }: ICard) => {
     return (
         <CardMain {...rest}>
             <EditCardButton type="button" title={`Edit Description Template ${title}`} onClick={() => onOpenModal(title)}>
-                <BiEdit />
+                <BiEdit size={18} />
             </EditCardButton>
             <CardBody>
-                <Link href={`${githubUrl}${path}`} target="_blank" rel="noopener noreferrer" >
+                {
+                    withImg ? <CardImg src={imgSrc ?? noImage} alt="card-image" /> : ""
+                }
+                <Link href={`${githubUrl}${path}`} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700 }}>
                     {title}
                 </Link>
             </CardBody>

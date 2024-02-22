@@ -1,10 +1,13 @@
+'use client'
+
 import Card from "@/components/card"
 import { GlobalHead } from "@/components/head"
 import { getDataThemesByStatus } from "@/lib/getDataThemes"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
+import { Content } from "@/components/content"
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const data = await getDataThemesByStatus({ statusThemes: "DRAFT" })
 
     return {
@@ -36,16 +39,16 @@ const Draft = ({ data }: any) => {
 
     return (
         <>
-                <GlobalHead title="Draft Templates" description="List of wedding invitation templates reserved for viding.co" />
-            <div className="container" ref={containerRef}>
-                <div className="row">
+            <GlobalHead title="Draft Templates" description="List of wedding invitation templates reserved for viding.co" />
+            <Content>
+                <div className="row card-list">
                     {data?.map((item: any, i: any) => (
                         <div ref={(el: HTMLDivElement) => (listRef.current[i] = el)} key={item.name}>
-                            <Card title={item.name} path={item.path} />
+                            <Card title={item.name} path={item.path} withImg={true} />
                         </div>
                     ))}
                 </div>
-            </div>
+            </Content>
         </>
     )
 }
