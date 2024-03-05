@@ -40,7 +40,7 @@ const New = ({ data }: any) => {
     return (
         <>
             <GlobalHead title="New Templates" description="List of new templates wedding invitation for viding.co" />
-            <Content>
+            <Content ref={containerRef}>
                 <div className="row card-list">
                     {data?.map((item: any, i: any) => (
                         <div ref={(el: HTMLDivElement) => (listRef.current[i] = el)} key={item.name} >

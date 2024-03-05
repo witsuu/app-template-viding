@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, forwardRef } from 'react'
 
 const ContentContainer = styled.section`
     position:relative;
@@ -14,12 +14,12 @@ const ContentBody = styled.div`
     }
 `
 
-export const Content = ({ children }: { children: ReactNode }) => {
+export const Content = forwardRef(({ children, ...rest }: { children: ReactNode }& React.HTMLAttributes<HTMLElement>, ref: React.ForwardedRef<HTMLElement>) => {
     return (
-        <ContentContainer>
+        <ContentContainer ref={ref} {...rest}>
             <ContentBody>
                 {children}
             </ContentBody>
         </ContentContainer>
     )
-}
+})

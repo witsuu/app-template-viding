@@ -40,7 +40,7 @@ const Draft = ({ data }: any) => {
     return (
         <>
             <GlobalHead title="Draft Templates" description="List of wedding invitation templates reserved for viding.co" />
-            <Content>
+            <Content ref={containerRef}>
                 <div className="row card-list">
                     {data?.map((item: any, i: any) => (
                         <div ref={(el: HTMLDivElement) => (listRef.current[i] = el)} key={item.name}>

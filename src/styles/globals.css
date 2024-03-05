@@ -33,33 +33,6 @@ button:focus {
   outline: none;
 }
 
-.container {
-  width: 100%;
-  padding-top: 2rem;
-  padding-left: calc(1.5rem * .5);
-  padding-right: calc(1.5rem * .5);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@media (min-width:992px) {
-  .container {
-    width: 960px;
-  }
-}
-
-@media (min-width:1200) {
-  .container {
-    width: 1140px;
-  }
-}
-
-@media (min-width:1400px) {
-  .container {
-    width: 1320px;
-  }
-}
-
 .row {
   display: flex;
   row-gap: 1rem;
@@ -94,18 +67,4 @@ button:focus {
 .loadingToast {
   transition: all 5s linear;
   transform: scaleX(0) !important;
-}
-
-@media (min-width:768px) {
-  .col-md-4 {
-    width: 33.33%;
-    padding: 0 .5rem;
-  }
-}
-
-@media (min-width:992px) {
-  .col-lg-3 {
-    width: 25%;
-    padding: 0 .5rem;
-  }
 }
