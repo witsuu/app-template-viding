@@ -23,3 +23,5 @@ export const Content = forwardRef(({ children, ...rest }: { children: ReactNode 
         </ContentContainer>
     )
 })
+
+Content.displayName = "Content"
